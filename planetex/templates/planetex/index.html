@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+    <link rel="stylesheet" href="/static/styles.css" type="text/css" />
+    <title>Planet Les Blogs 2.0</title>
+</head>
+
+<body>
+    <div id="banner">
+        <h1><a href="http://lesblogs.webdosbeta.net/" accesskey="1">Planet Les Blogs 2.0</a></h1>
+    </div>
+    <div id="pagebody">
+    <div id="pagebody-inner">
+    <div id="center">
+        <div class="content">
+            <h1>Lastest posts</h1>
+            {% for post in posts %}
+              <div class="posts">
+                <h4 class="entry-header"><a href="{{post.link}}">{{post.title}}</a></h4>
+                <div>{{post.content|striptags|truncatewords:"100"}}</div>
+                <p class="posted">Posted by <!-- {% if post.author %}{{post.author}} on {% endif %} --><a href="{{post.get_feed.link_html}}">{{post.get_feed.title}}</a> | {{post.modified|slice:":16"}} | <a href="{{post.link}}">Permalink</a></p>
+              </div>
+            {% endfor %}
+	    {% if posts_short %}
+  	    <h3>More last day</h3>
+	    <ul>
+            {% for post in posts_short %}
+  		<li><a href="{{post.link}}">{{post.title}}</a> by <a href="{{post.get_feed.link_html}}">{{post.get_feed.title}}</a></li>
+	    {% endfor %}
+	    <ul>
+	    {% endif %}
+        </div>
+    </div>
+    <div id="right">
+        <div class="sidebar">
+            <div class="module-typelist module">
+                <h2 class="module-header">Les Blogs 2.0</h2>
+                <div class="module-content">
+                    <ul class="module-list">
+                        <li><a href="http://lesblogs.typepad.com">Home</a></li>
+                        <li><a href="http://www.u-blog.net/site/lesblogs2.php">Sign Up</a></li>
+                        <li><a href="http://lesblogs.typepad.com/blog/2005/11/les_blogs_20_pr.html">Preliminary Program</a></li>
+                        <li><a href="http://lesblogs.typepad.com/blog/sessions_panels/index.html">Sessions description</a></li>
+                        <li><a href="http://lesblogs.typepad.com/blog/confirmed_speakers/index.html">Confirmed Speakers</a></li>
+                        <li><a href="http://lesblogs.typepad.com/blog/news/index.html">News</a></li>
+                        <li><a href="http://lesblogs.typepad.com/blog/hoteltravel/index.html">Hotel &amp; Travel</a></li>
+                        <li><a href="http://lesblogs.typepad.com/blog/sponsors/index.html">Sponsors</a></li>
+                    </ul>
+                </div>
+                <h2 class="module-header">del.icio.us tag/lesblogs</h2>
+                <div class="module-content">
+                    <ul class="module-list">
+                        {% for post in delicious %}
+                        <li class="module-list-item">- <a href="{{post.link}}">{{post.title|truncatewords:":10"}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="column">
+        <div class="sidebar">
+            <div class="module-typelist module">
+                <h2 class="module-header">Planet</h2>
+                <div class="module-content">
+                    <ul class="module-list">
+                        <li><a href="/opml">[OPML]</a></li>
+                        <li><a href="/atom">[XML Atom 0.3]</a></li>
+                        {% for feed in feeds %}
+                        <li class="module-list-item"><a href="{{feed.link_html}}">{{feed.title}}</a> <a href="{{feed.link_xml}}">(XML)</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+</body>
+</html>

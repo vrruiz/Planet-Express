@@ -1,0 +1,13 @@
+PLANET EXPRESS
+==============
+
+(C) 2004-2005 Víctor R. Ruiz <rvr@linotipo.es>
+
+This is a software to republish posts from a feed list (a.k.a. "feed planet"),
+originally wrote and used for Les Blogs 2004 conference. It uses Universal
+Feed Parser to retrieve posts, and store them in a database. Uses Django's
+template system.
+
+KNOWN ISSUES
+------------
+Legacy code! Worked on an old version of Django, probably needs update!

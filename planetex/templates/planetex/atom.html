@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed version="0.3" xmlns="http://purl.org/atom/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <title>Planet Les Blogs 2.0</title>
+    <link rel="alternate" type="text/html" href="http://rvr.typepad.com/linotipo/" />
+    <generator url="http://rvr.typepad.com/">Planet Express</generator>
+    {% for post in posts %}
+    <entry>
+        <title>{{post.title|escape}}</title>
+        <link rel="alternate" type="text/html" href="{{post.link}}" />
+        <id>{{post.guid}}</id>
+        <modified>{{post.modified}}</modified>
+        {% if post.summary %}<summary>{{post.summary}}</summary>{% endif %}
+        {% if post.author %}<author>
+            <name>{{post.author|escape}}</name>
+        </author>{% endif %}
+        <content type="application/xhtml+xml" xml:base="{{post.get_feed.link_html}}"><div xmlns="http://www.w3.org/1999/xhtml">{{post.content|escape}}</div></content>
+    </entry>
+    {% endfor %}
+</feed>

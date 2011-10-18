@@ -1,0 +1,13 @@
+<opml version="1.0">
+    <head>
+        <title>Planet Les Blogs 2.0</title>
+        <ownerName/>
+    </head>
+    <body>
+        <outline title="Subscriptions">
+            {% for feed in feeds %}
+            <outline title="{{feed.title|escape}}" htmlUrl="{{feed.link_html}}" xmlUrl="{{feed.link_xml}}" type="rss" />
+            {% endfor %}
+        </outline>
+    </body>
+</opml>
